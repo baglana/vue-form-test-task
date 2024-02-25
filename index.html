@@ -1,11 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Форма создания Клиента</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        form {
+            /* Center the form on the page */
+            margin: 0 auto;
+            width: 400px;
+            /* Form outline */
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
 
+        fieldset {
+            border: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        label {
+            /* Uniform size & alignment */
+            display: inline-block;
+            text-align: left;
+        }
+
+        input {
+            /* To make sure that all text fields have the same font settings
+             */
+            font: 1em sans-serif;
+
+            /* Uniform text field size */
+            width: 300px;
+            box-sizing: border-box;
+
+            /* Match form field borders */
+            border: 1px solid #999;
+        }
+
+        input:focus {
+            /* Additional highlight for focused elements */
+            border-color: #000;
+        }
+    </style>
 </head>
 <body>
+<form action="/my-handling-form-page" method="post">
+    <p><span aria-label="required">*</span> Поле обязательное для заполнения.</p>
+    <section>
+        <p>
+            <label for="lastName">
+                <span>Фамилия</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="lastName" name="lastName" required type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="firstName">
+                <span>Имя</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="firstName" name="firstName" required type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="patronymic">
+                <span>Отчество</span>
+                <input id="patronymic" name="patronymic" type="text"/>
+            </label>
+        </p>
+    </section>
+    <section>
+        <p>
+            <label for="dob">
+                <span>Дата рождения</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="dob" name="dob" type="date">
+            </label>
+        </p>
+        <p>
+            <label for="tel">
+                <span>Номер телефона (11 цифр. Начинается с 7)</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="tel" name="tel" required type="tel">
+            </label>
+        </p>
+        <fieldset>
+            <legend>Пол</legend>
+            <ul>
+                <li>
+                    <label for="male">Муж.</label>
+                    <input id="male" name="gender" required type="radio" value="male"/>
+                </li>
+                <li>
+                    <label for="female">Жен.</label>
+                    <input id="female" name="gender" type="radio" value="female"/>
+                </li>
+            </ul>
+        </fieldset>
+    </section>
+    <section>
+        <fieldset>
+            <legend>
+                <span>Группа клиентов (Мультиселектор)</span>
+                <strong><span aria-label="required">*</span></strong>
+            </legend>
+            <ul>
+                <li>
+                    <label for="vip">VIP</label>
+                    <input id="vip" name="group" type="checkbox" value="vip"/>
+                </li>
+                <li>
+                    <label for="problem">Проблемные</label>
+                    <input id="problem" name="group" type="checkbox" value="problem"/>
+                </li>
+                <li>
+                    <label for="omc">ОМС</label>
+                    <input id="omc" name="group" type="checkbox" value="omc"/>
+                </li>
+            </ul>
+        </fieldset>
+        <p>
+            <label for="doctor">
+                <span>Лечащий врач. (Cелектор)</span>
+            </label>
+            <select id="doctor" name="doctor">
+                <option value="doctor1">Иванов</option>
+                <option value="doctor2">Захаров</option>
+                <option value="doctor3">Чернышева</option>
+            </select>
+        </p>
+        <p>
+            <label for="sms">Не отправлять СМС. (Чекбокс)</label>
+            <input id="sms" name="sms" type="checkbox" value="no">
+        </p>
+    </section>
+    <section>
+        <h2>Адрес</h2>
+        <p>
+            <label for="zip">
+                <span>Индекс</span>
+                <input id="zip" name="zip" type="tel">
+            </label>
+        </p>
+        <p>
+            <label for="country">
+                <span>Страна</span>
+                <input id="country" name="country" type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="region">
+                <span>Область</span>
+                <input id="region" name="region" type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="city">
+                <span>Город</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="city" name="city" required type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="street">
+                <span>Улица</span>
+                <input id="street" name="street" type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="house">
+                <span>Дом</span>
+                <input id="house" name="house" type="text"/>
+            </label>
+        </p>
+    </section>
+    <section>
+        <h2>Паспорт</h2>
+        <p>
+            <label for="documentType">
+                <span>Тип документа (Cелектор)</span>
+                <strong><span aria-label="required">*</span></strong>
+            </label>
+            <select id="documentType" name="documentType">
+                <option value="passport">Паспорт</option>
+                <option value="birthCertificate">Свидетельство о рождении</option>
+                <option value="dirversLicence">Вод. удостоверение</option>
+            </select>
+        </p>
+        <p>
+            <label for="documentSeries">
+                <span>Серия</span>
+                <input id="documentSeries" name="documentSeries" type="tel">
+            </label>
+        </p>
+        <p>
+            <label for="documentNumber">
+                <span>Номер</span>
+                <input id="documentNumber" name="documentNumber" type="tel">
+            </label>
+        </p>
+        <p>
+            <label for="documentIssuer">
+                <span>Кем выдан</span>
+                <input id="documentIssuer" name="documentIssuer" type="text"/>
+            </label>
+        </p>
+        <p>
+            <label for="documentDate">
+                <span>Дата выдачи</span>
+                <strong><span aria-label="required">*</span></strong>
+                <input id="documentDate" name="documentDate" type="date">
+            </label>
+        </p>
+    </section>
+    <section>
+        <p class="button">
+            <button type="submit">Submit</button>
+        </p>
+    </section>
+</form>
+
+
+<div id="app">
+    {{ message }}
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
 </body>
 </html>
